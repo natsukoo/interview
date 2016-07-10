@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>面试题总结</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+    <!-- 导航栏开始～ -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <img alt="Brand" class="img-resposive" src="img/logo.png">
+                </a>
+            </div>
+            <div class="nav navbar-nav navbar-left dropdown">
+                <button class="btn btn-default dropdown-toggle navbar-btn" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    题目目录
+                    <!-- <span class="glyphicon glyphicon-th-list" ></span> -->
+                    <!-- <span class="sr-only">(info)</span> -->
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="#a">试题一</a></li>
+                    <li><a href="#b">试题二</a></li>
+                    <li><a href="#c">试题三</a></li>
+                    <li><a href="#d">试题四</a></li>
+
+                    <li><a href="#e">试题五</a></li>
+                    <li><a href="#f">试题六</a></li>
+                    <li><a href="#g">试题七</a></li>
+                    <li><a href="#h">试题八</a></li>
+                    <li><a href="#i">试题九</a></li>
+                    <li><a href="#j">试题十</a></li>
+                    <li><a href="#k">试题十一</a></li>
+                    <li><a href="#l">试题十二</a></li>
+
+                    <li><a href="#m">试题十三</a></li>
+                    <li><a href="#n">试题十四</a></li>
+                </ul>
+            </div>
+            <form class="navbar-form  form-inline navbar-right visible-lg-block visible-md-block" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <a href="#"></a>
+                <button type="submit" class="btn btn-default">Search</button>
+            </form>
+        </div>
+    </nav>
+    <!-- 导航栏结束 -->
+    <div class="container">
+    <div class="panel panel-default">
+        <div class="col-lg-8 col-lg-offset-2 col-md-12 panel-body" id="a">
+            <h4>试题 1  对WEB标准以及W3C的理解与认识</h4>
+            <p>签闭合、标签小写、不乱嵌套、提高搜索机器人搜索几率、使用外 链css和js脚本、结构行为表现的分离、文件下载与页面速度更快、内容能被更多的用户所访问、内容能被更广泛的设备所访问、更少的代码和组件，容易维 护、改版方便，不需要变动页面内容、提供打印版本而不需要复制内容、提高网站易用性；</p>
+        </div>
+        </div>
+        <div class="col-lg-8 col-lg-offset-2 col-md-12 panel-body" id="b">
+            <h4>试题 2  xhtml和html有什么区别</h4>
+            <p>HTML是一种基本的WEB网页设计语言，XHTML是一个基于XML的置标语言 最主要的不同： XHTML 元素必须被正确地嵌套。 XHTML 元素必须被关闭。 标签名必须用小写字母。
+            </p>
+        </div>
+        <div class="col-lg-8 col-lg-offset-2 col-md-12 panel-body" id="c">
+            <h4>试题 3 html5对input新增了哪些高级属性？</h4>
+            <p>number ,date,color,range,email,search,tel,url</p>
+        </div>
+        <div class="col-lg-8 col-lg-offset-2 col-md-12" id="d">
+            <h4>试题 4  行内元素有哪些?块级元素有哪些?CSS的盒模型?</h4>
+            <p>
+                块级元素：div p h1 h2 h3 h4 form ul 行内元素: a b br i span input select Css盒模型:内容，border ,margin，padding</p>
+        </div>
+        <div class="col-lg-8 col-lg-offset-2 col-md-12" id="e">
+            <h4>试题 5  CSS引入的方式有哪些? link和@import的区别是?</h4>
+            <p>内联 内嵌 外链 导入 </p>
+            <p>区别 ：同时加载 前者无兼容性，后者CSS2.1以下浏览器不支持 Link 支持使用javascript改变样式，后者不可</p>
+        </div>
+        <div class="col-lg-8 col-lg-offset-2 col-md-12" id="f">
+            <h4>试题 6  CSS选择符有哪些?哪些属性可以继承?优先级算法如何计算?内联和important哪个优先级高?</h4>
+            <p>类选择器、ID选择器、标签选择器、全局选择器、级联选择器、伪选择器、属性选择器
+                <br> Id>class>标签选择 继承不如指定
+            </p>
+        </div>
+        <div class="col-lg-8 col-lg-offset-2 col-md-12" id="g">
+            <h4>试题 7  写出几种IE6 BUG的解决方法</h4>
+            <p>1.双边距BUG float引起的 使用display
+                <br>2.3像素问题 使用float引起的 使用dislpay:inline -3px
+                <br>3.超链接hover 点击后失效 使用正确的书写顺序 link visited hover active
+                <br>4.Ie z-index问题 给父级添加position:relative
+                <br>5.Png 透明 使用js代码 改
+                <br>6.Min-height 最小高度 ！Important 解决’
+                <br>7.select 在ie6下遮盖 使用iframe嵌套
+                <br>8.为什么没有办法定义1px左右的宽度容器（IE6默认的行高造成的，使用over:hidden,zoom:0.08 line-height:1px）</p>
+        </div>
+        <div class="col-lg-8 col-lg-offset-2 col-md-12" id="h">
+            <h4>试题 8  标签上title与alt属性的区别是什么?</h4>
+            <p> Alt 当图片不显示是 用文字代表。 Title 为该属性提供信息</p>
+        </div>
+        <div class="col-lg-8 col-lg-offset-2 col-md-12" id="i">
+            <h4>试题 9  清除浮动的几种方式，各自的优缺点</h4>
+            <p>1.使用空标签清除浮动 clear:both（理论上能清楚任何标签，增加无意义的标签）<br> 2.使用overflow:auto（空标签元素清除浮动而不得不增加无意代码的弊端,使用zoom:1用于兼容IE） <br>3.是用afert伪元素清除浮动(用于非IE浏览器)
+            </p>
+        </div>
+        <div class="col-lg-8 col-lg-offset-2 col-md-12" id="j">
+            <h4>试题 10  ul、ol、dl的区别？ div、section、article的区别？</h4>
+            <p>a:ul是无序列表，ol是有序列表，dl是定义列表有层次关系。
+                <br> b:div无语义，只是用作布局。 section是有一定语义的div，表示一个专题，一般有标题，但是不可以乱用。只有内容明确需要出现在大纲中时才会使用。
+                <br>artical是更特殊的section，他是一个独立完整的内容块。比如用在文章，评论等。
+            </p>
+        </div>
+        <div class="col-lg-8 col-lg-offset-2 col-md-12" id="k">
+            <h4>试题 11 如何用CSS控制文本单行溢出省略？并且大致说出多行省略的思路。 </h4>
+            <p>a:css实现单行溢出省略是利用text-overflow：ellipsis，white-space：nowrap和overflow：hidden属性实现的。（新版主流浏览器测试通过）</p>
+        </div>
+        <div class="col-lg-8 col-lg-offset-2 col-md-12" id="l">
+            <h4>试题 12  谈谈响应式布局？</h4>
+            <p>
+                响应式布局是为了解决现在市场上的浏览器尺寸不一的现状，让用户无论是使用移动端还是电脑端访问都有很好体验。html5也因此加入了媒体查询等一系列针对响应式布局的新元素。</p>
+        </div>
+        <div class="col-lg-8 col-lg-offset-2 col-md-12" id="m">
+            <h4>试题 13  CSS3有哪些高级选择器？</h4>
+            <p>css有属性选择器{E[att$='val'],E[att~='val'],E[att^='val']}
+                <br> 伪类选择器{E:not(),E:last-child,E:only-child,E:nth-child(n),E:nth-last-child(),E:empty} 伪对象选择器{E::selection} 关系选择器{E~F}
+            </p>
+        </div>
+        <div class="col-lg-8 col-lg-offset-2 col-md-12" id="n">
+            <h4>试题 14  HTML5 有哪些不同类型的存储？</h4>
+            <p>HTML 5 支持本地存储，在之前版本中是通过 Cookie 实现的。HTML5 本地存储速度快而且安全。 有两种不同的对象可用来存储数据： 　　localStorage 适用于长期存储数据，浏览器关闭后数据不丢失 　　sessionStorage 存储的数据在浏览器关闭后自动删除
+            </p>
+        </div>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

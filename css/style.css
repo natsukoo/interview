@@ -1,0 +1,25 @@
+body {
+        padding-top: 70px;
+        padding-bottom: 50px;
+    }
+    
+    .img-resposive {
+        width: 15px;
+        height: 20px;
+    }
+    
+    [class*="col-"] {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        margin-top: 0;
+        margin-bottom: 0;
+        background-color: #f1f0f0;
+        background-color: rgba(240, 241, 124, .15);
+        border: 1px solid #ddd;
+        border: 1px solid rgba(86, 61, 124, 0.2);
+    }
+
+    :target{
+    	/*background-color: #fbf975;*/
+    	background-color: rgba(251,251,117,0.4);
+    }
