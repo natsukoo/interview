@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="index" charset="utf-8" content="content">
+    <title>12.高级面试题</title>
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+    <style type="text/css" media="screen">
+    h5.panel-title {
+        font-size: 13px;
+    }
+    
+    #accordion2 div.panel-heading {
+        padding: 3px 4px;
+    }
+    </style>
+</head>
+
+<body onload="prettyPrint()">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <span>高级面试题</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <!-- panel start -->
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        试题一 FizzBuzzWhizz 
+        </a>
+      </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <p>你是一名体育老师，在某次课距离下课还有五分钟时，你决定搞一个游戏。此时有100名学生在上课。游戏的规则是：</p>
+                        <p> 1. 你首先说出三个不同的特殊数，要求必须是个位数，比如3、5、7。</p>
+                        <p> 2. 让所有学生拍成一队，然后按顺序报数。</p>
+                        <p> 3. 学生报数时，如果所报数字是第一个特殊数（3）的倍数，那么不能说该数字，而要说Fizz；如果所报数字是第二个特殊数（5）的倍数，那么要说Buzz；如果所报数字是第三个特殊数（7）的倍数，那么要说Whizz。 </p>
+                        <p>4. 学生报数时，如果所报数字同时是两个特殊数的倍数情况下，也要特殊处理，比如第一个特殊数和第二个特殊数的倍数，那么不能说该数字，而是要说FizzBuzz, 以此类推。如果同时是三个特殊数的倍数，那么要说FizzBuzzWhizz。 </p>
+                        <p>5. 学生报数时，如果所报数字包含了第一个特殊数，那么也不能说该数字，而是要说相应的单词，比如本例中第一个特殊数是3，那么要报13的同学应该说Fizz。如果数字中包含了第一个特殊数，那么忽略规则3和规则4，比如要报35的同学只报Fizz，不报BuzzWhizz。</p>
+                        <p> 现在，我们需要你完成一个程序来模拟这个游戏，它首先接受3个特殊数，然后输出100名学生应该报数的数或单词。
+                        </p>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary btn" data-toggle="modal" data-target="#myModal">
+                            seeking for answer
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">试题一解法</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="codeShow container-fluid">
+                                            <p>
+                                                解法一：
+                                                <br> 1. 先处理 1 - 100 之间 3，5，7 的倍数的值，给他们累加字符串。
+                                                <br> 2. 遍历 1 - 100，如果编号含 3 的，就直接用 Fizz 覆盖，如果是空的返回编号，否则返回之前累加的字符串。
+                                            </p>
+                                            <pre class="prettyprint">
+var key = [3, 5, 7], // 特殊数字
+    keyStr = ["Fizz", "Buzz", "Whizz"], // 替换字符
+    arr = Array(101).join(",").split(","), // 初始化101个空字符串数组
+    i = 0, // 累加器
+    n = 1, // 倍数累加器
+    tmp; // 临时变量
+
+for (; i<3; i++, n=1) { // 遍历 key 数组
+    while (101 > (tmp = key[i]*n++)) { // n倍结果
+        arr[tmp] += keyStr[i]; // 累加字符串
+    }
+}
+
+for (i=1; i<101; i++) {
+    arr[i] = (i+"").indexOf(key[0])>-1 ? keyStr[0] : arr[i] === '' ? i : arr[i];
+}
+arr.shift(); // 去除下标0的元素
+console.log(arr.join("\n"));
+                                    		</pre>
+                                            <p>解法二：</p>
+                                            <pre class="prettyprint">
+function cd(x, y, s) {
+    return x % y === 0 ? s : '';
+}
+function bs(a, b, c) {
+    for (var i = 1; i <= 100; i++) {
+        var d = cd(i, a, 'Fizz') + cd(i, b, 'Buzz') + cd(i, c, "Whizz");
+        console.log((i + "").indexOf(a) !== -1 ? "Fizz" : d !== '' ? d : i);
+    }
+}
+bs(3, 5, 7);
+                                    		</pre>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- panel start -->
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                    <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        试题二：关于作用域的问题
+        </a>
+      </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body">
+                        <pre class="prettyprint">
+(function() {
+   var a = b = 5;
+})();
+
+console.log(b);
+                    </pre>
+                        <p>什么会被打印在控制台上？ </p>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">
+                            seeking for answer
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel2">试题二答案：</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>
+                                            会打印 5。 这个问题的诀窍是，这里有两个变量声明，但 a 使用关键字var声明的。代表它是一个函数的局部变量。与此相反，b 变成了全局变量。 这个问题的另一个诀窍是，它没有使用严格模式 ('use strict';) 。如果启用了严格模式，代码就会引发ReferenceError的错误：B没有定义（b is not defined）。请记住，严格模式，则需要明确指定，才能实现全局变量声明。
+                                        </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- panel start -->
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingThree">
+                    <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          试题三：创建“原生”（native）方法
+        </a>
+      </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                    <div class="panel-body">
+                        <p>给字符串对象定义一个repeatify功能。当传入一个整数n时，它会返回重复n次字符串的结果。例如：</p>
+                        <pre class="prettyprint">
+console.log('hello'.repeatify(3));
+					</pre>
+                        <p>应打印 hellohellohello</p>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal3">
+                            seeking for answer
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel3">试题三解法</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>现在的问题测试开发者有关JavaScript继承和prototype的知识点。这也验证了开发者是否知道该如何扩展内置对象（尽管这不应该做的）。 这里的另一个要点是，你要知道如何不覆盖可能已经定义的功能。
+                                        </p>
+                                        <pre class="prettyprint">
+String.prototype.repeatify = String.prototype.repeatify || function(times) {
+   var str = '';
+   for (var i = 0; i < times; i++) {
+      str += this;
+   }
+   return str;
+};                                        	
+                                        </pre>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- panel start -->
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingFour">
+                    <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+          试题四：声明提升（Hoisting）
+        </a>
+      </h4>
+                </div>
+                <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                    <div class="panel-body">
+                        <p>
+                            执行这段代码，输出什么结果。
+                        </p>
+                        <pre class="prettyprint">
+(function test() {
+   console.log(a);
+   console.log(foo());
+   var a = 1;
+   function foo() {
+      return 2;
+   }
+})();</pre>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal4">
+                            seeking for answer
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel4">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel4">试题四解法：</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>
+                                            这段代码的结果是 undefined 和 2。 原因是，变量和函数的声明都被提前了（移到了函数的顶部），但变量不分配任何值。因此，在打印变量的时候，它在函数中存在（它被声明了），但它仍然是 undefined 。换句话说，上面的代码等同于以下内容：
+                                        </p>
+                                        <pre class="prettyprint">function test() {
+   var a;
+   function foo() {
+      return 2;
+   }
+ 
+   console.log(a);
+   console.log(foo());
+    
+   a = 1;
+}
+ 
+test();</pre>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- panel start -->
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingFive">
+                    <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+          试题五：this在JavaScript中如何工作的
+        </a>
+      </h4>
+                </div>
+                <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                    <div class="panel-body">
+                        <p>下面的代码会输出什么结果？给出你的答案。</p>
+                        <pre class="prettyprint">var fullname = 'John Doe';
+var obj = {
+   fullname: 'Colin Ihrig',
+   prop: {
+      fullname: 'Aurelio De Rosa',
+      getFullname: function() {
+         return this.fullname;
+      }
+   }
+};
+
+console.log(obj.prop.getFullname());
+ 
+var test = obj.prop.getFullname;
+ 
+console.log(test());</pre>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal5">
+                            seeking for answer
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel5">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel5">试题五解法：</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>答案是Aurelio De Rosa和John Doe。
+                                            <br/>原因是，在一个函数中，this的行为，取决于JavaScript函数的调用方式和定义方式，而不仅仅是看它如何被定义的。 在第一个 console.log()调用中，getFullname() 被调用作为obj.prop对象的函数。所以，上下文指的是后者，函数返回该对象的fullname。与此相反，当getFullname()被分配到test变量时，上下文指的是全局对象（window）。这是因为test是被隐式设置为全局对象的属性。出于这个原因，该函数返回window的fullname，即定义在第一行的那个值。</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- panel start -->
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingSix">
+                    <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+          试题六：call() 和 apply()
+        </a>
+      </h4>
+                </div>
+                <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+                    <div class="panel-body">
+                        <p>使最后的console.log() 打印 Aurelio De Rosa。</p>
+                        <pre class="prettyprint">var fullname = 'John Doe';
+var obj = {
+   fullname: 'Colin Ihrig',
+   prop: {
+      fullname: 'Aurelio De Rosa',
+      getFullname: function() {
+         return this.fullname;
+      }
+   }
+};
+
+console.log(obj.prop.getFullname());
+ 
+var test = obj.prop.getFullname;
+ 
+console.log();</pre>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal6">
+                            seeking for answer
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel6">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel6">试题六解法：</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>该问题可以通过强制使用 call() 或者 apply() 改变函数上下文。在下面我将使用call()，但在这种情况下，apply()会输出相同的结果： </p>
+                                        <pre class="prettyprint">console.log(test.call(obj.prop));</pre>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- panel start -->
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingSeven">
+                    <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+          试题七：按顺序写出结果
+        </a>
+      </h4>
+                </div>
+                <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
+                    <div class="panel-body">
+                        <pre class="prettyprint">var name = "The Window";
+var object = {
+    name : "My Object",
+    getNameFunc : function(){
+        alert('1.' + this.name);
+        return function(){
+            return this.name;
+        };
+    }
+};
+var func = object.getNameFunc();
+alert('2.' + func());
+alert('3.' + func.call(object));
+alert('4.' + func.apply(object));</pre>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal7">
+                            seeking for answer
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal7" tabindex="-1" role="dialog" aria-labelledby="myModalLabel7">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel7">七的解法：</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <ul>
+                                            <li>
+                                                var func = object.getNameFunc() => 1.My Object
+                                                <li>
+                                                    alert('2.' + func()) => 2.The Window
+                                                </li>
+                                                <li>
+                                                    alert('3.' + func.call(object)) => 3.My Object
+                                                </li>
+                                                <li>
+                                                    alert('4.' + func.apply(object)) => 4.My Object</li>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- panel start -->
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingEight">
+                    <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+          试题八：如何解决跨域问题
+        </a>
+      </h4>
+                </div>
+                <div id="collapseEight" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEight">
+                    <div class="panel-body">
+                        <p>
+                            <strong>JSONP：</strong>
+                            <br/> 原理是：动态插入script标签，通过script标签引入一个js文件，这个js文件载入成功后会执行我们在url参数中指定的函数，并且会把我们需要的json数据作为参数传入。 由于同源策略的限制，XmlHttpRequest只允许请求当前源（域名、协议、端口）的资源，为了实现跨域请求，可以通过script标签实现跨域请求，然后在服务端输出JSON数据并执行回调函数，从而解决了跨域的数据请求。 优点是兼容性好，简单易用，支持浏览器与服务器双向通信。缺点是只支持GET请求。 JSONP：json+padding（内填充），顾名思义，就是把JSON填充到一个盒子里</p>
+                        <pre class="prettyprint"> function createJs(sUrl){
+
+        var oScript = document.createElement('script');
+        oScript.type = 'text/javascript';
+        oScript.src = sUrl;
+        document.getElementsByTagName('head')[0].appendChild(oScript);
+    }
+
+    createJs('jsonp.js');
+
+    box({
+       'name': 'test'
+    });
+
+    function box(json){
+        alert(json.name);
+    }</pre>
+                        <p>
+                            <strong>CORS</strong>
+                            <br/> 服务器端对于CORS的支持，主要就是通过设置Access-Control-Allow-Origin来进行的。如果浏览器检测到相应的设置，就可以允许Ajax进行跨域的访问。
+                        </p>
+                        <p>
+                            <strong>通过修改document.domain来跨子域 </strong>
+                            <br/> 将子域和主域的document.domain设为同一个主域.前提条件：这两个域名必须属于同一个基础域名!而且所用的协议，端口都要一致，否则无法利用document.domain进行跨域
+                            <br/> 主域相同的使用document.domain </p>
+                        <p>
+                            <strong>使用window.name来进行跨域</strong>
+                            <br/> window对象有个name属性，该属性有个特征：即在一个窗口(window)的生命周期内,窗口载入的所有的页面都是共享一个window.name的，每个页面对window.name都有读写的权限，window.name是持久存在一个窗口载入过的所有页面中的
+                        </p>
+                        <p>
+                            <strong>使用HTML5中新引进的window.postMessage方法来跨域传送数据 </strong>
+                            <br/> 还有flash、在服务器上设置代理页面等跨域方式。个人认为window.name的方法既不复杂，也能兼容到几乎所有浏览器，这真是极好的一种跨域方法。
+                        </p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- panel start -->
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingNine">
+                    <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+          试题九：XML和JSON的区别？
+        </a>
+      </h4>
+                </div>
+                <div id="collapseNine" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingNine">
+                    <div class="panel-body">
+                        <ol>
+                            <li>数据体积方面:JSON相对于XML来讲，数据的体积小，传递的速度更快些。</li>
+                            <li>数据交互方面:JSON与JavaScript的交互更加方便，更容易解析处理，更好的数据交互。</li>
+                            <li>数据描述方面:JSON对数据的描述性比XML较差</li>
+                            <li>传输速度方面:JSON的速度要远远快于XML。</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <!-- panel start -->
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTen">
+                    <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+          试题十：谈你对webpack的看法
+        </a>
+      </h4>
+                </div>
+                <div id="collapseTen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTen">
+                    <div class="panel-body">
+                        <p>
+                            <strong>WebPack</strong> 是一个模块打包工具，你可以使用WebPack管理你的模块依赖，并编绎输出模块们所需的静态文件。它能够很好地管理、打包Web开发中所用到的HTML、Javascript、CSS以及各种静态文件（图片、字体等），让开发过程更加高效。对于不同类型的资源，webpack有对应的模块加载器。webpack模块打包器会分析模块间的依赖关系，最后 生成了优化且合并后的静态资源。</p>
+                        <p>
+                            <strong>webpack的两大特色：</strong>
+                            <ol>
+                                <li>code splitting（可以自动完成）</li>
+                                <li>loader 可以处理各种类型的静态文件，并且支持串联操作 webpack 是以commonJS的形式来书写脚本滴，但对 AMD/CMD 的支持也很全面，方便旧项目进行代码迁移。</li>
+                            </ol>
+                        </p>
+                        <p>
+                            <strong>webpack具有requireJs和browserify的功能，但仍有很多自己的新特性：</strong>
+                            <ol>
+                                <li>对 CommonJS 、 AMD 、ES6的语法做了兼容</li>
+                                <li>对js、css、图片等资源文件都支持打包</li>
+                                <li>串联式模块加载器以及插件机制，让其具有更好的灵活性和扩展性，例如提供对CoffeeScript、ES6的支持</li>
+                                <li>有独立的配置文件webpack.config.js</li>
+                                <li>可以将代码切割成不同的chunk，实现按需加载，降低了初始化时间</li>
+                                <li>支持 SourceUrls 和 SourceMaps，易于调试</li>
+                                <li>具有强大的Plugin接口，大多是内部插件，使用起来比较灵活</li>
+                                <li>webpack 使用异步 IO 并具有多级缓存。这使得 webpack 很快且在增量编译上更加快</li>
+                            </ol>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- panel start -->
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingEleven">
+                    <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+          试题十一：创建ajax过程
+        </a>
+      </h4>
+                </div>
+                <div id="collapseEleven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEleven">
+                    <div class="panel-body">
+                        <p>
+                            <ol>
+                                <li>创建XMLHttpRequest对象,也就是创建一个异步调用对象.</li>
+                                <li>创建一个新的HTTP请求,并指定该HTTP请求的方法、URL及验证信息.</li>
+                                <li>设置响应HTTP请求状态变化的函数.</li>
+                                <li>发送HTTP请求.</li>
+                                <li>获取异步调用返回的数据.</li>
+                                <li>使用JavaScript和DOM实现局部刷新.</li>
+                            </ol>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- panel start -->
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingtwelve">
+                    <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsetwelve" aria-expanded="false" aria-controls="collapsetwelve">
+          试题十二：常见web安全及防护原理
+        </a>
+      </h4>
+                </div>
+                <div id="collapsetwelve" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingtwelve">
+                    <div class="panel-body">
+                        <!-- start -->
+                        <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="heading2One">
+                                    <h5 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapse2One" aria-expanded="true" aria-controls="collapse2One">
+          sql注入
+        </a>
+      </h5>
+                                </div>
+                                <div id="collapse2One" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2One">
+                                    <div class="panel-body">
+                                        <p>
+                                            就是通过把SQL命令插入到Web表单递交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令。 总的来说有以下几点：
+                                        </p>
+                                        <ol>
+                                            <li>
+                                                永远不要信任用户的输入，要对用户的输入进行校验，可以通过正则表达式，或限制长度，对单引号和双"-"进行转换等。
+                                            </li>
+                                            <li>
+                                                永远不要使用动态拼装SQL，可以使用参数化的SQL或者直接使用存储过程进行数据查询存取。
+                                            </li>
+                                            <li>
+                                                永远不要使用管理员权限的数据库连接，为每个应用使用单独的权限有限的数据库连接。
+                                            </li>
+                                            <li>
+                                                不要把机密信息明文存放，请加密或者hash掉密码和敏感的信息。
+                                            </li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="heading2Two">
+                                    <h5 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapse2Two" aria-expanded="false" aria-controls="collapse2Two">
+          XSS原理及防范
+        </a>
+      </h5>
+                                </div>
+                                <div id="collapse2Two" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2Two">
+                                    <div class="panel-body">
+                                        <p>
+                                            <strong>Xss(cross-site scripting)攻击</strong>指的是攻击者往Web页面里插入恶意 html标签或者javascript代码。比如：攻击者在论坛中放一个 看似安全的链接，骗取用户点击后，窃取cookie中的用户私密信息；或者攻击者在论坛中加一个恶意表单， 当用户提交表单的时候，却把信息传送到攻击者的服务器中，而不是用户原本以为的信任站点。
+                                        </p>
+                                        <p>
+                                            <strong>XSS防范</strong>首先代码里对用户输入的地方和变量都需要仔细检查长度和对”
+                                            <”,”>”,”;”,”’”等字符做过滤；其次任何内容写到页面之前都必须加以encode，避免不小心把html tag 弄出来。这一个层面做好，至少可以堵住超过一半的XSS 攻击。 首先，避免直接在cookie 中泄露用户隐私，例如email、密码等等。 其次，通过使cookie 和系统ip 绑定来降低cookie 泄露后的危险。这样攻击者得到的cookie 没有实际价值，不可能拿来重放。 如果网站不需要再浏览器端对cookie 进行操作，可以在Set-Cookie 末尾加上HttpOnly 来防止javascript 代码直接获取cookie 。 尽量采用POST 而非GET 提交表单。
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="heading2Three">
+                                    <h5 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapse2Three" aria-expanded="false" aria-controls="collapse2Three">
+          CSRF的防御及XSS与CSRF的区别
+        </a>
+      </h5>
+                                </div>
+                                <div id="collapse2Three" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2Three">
+                                    <div class="panel-body">
+                                        <p>
+                                            XSS是获取信息，不需要提前知道其他用户页面的代码和数据包。CSRF是代替用户完成指定的动作，需要知道其他用户页面的代码和数据包。 要完成一次CSRF攻击，受害者必须依次完成两个步骤：
+                                            <ul>
+                                                <li>登录受信任网站A，并在本地生成Cookie。</li>
+                                                <li>在不登出A的情况下，访问危险网站B。</li>
+                                            </ul>
+                                            服务端的CSRF方式方法很多样，但总的思想都是一致的，
+                                            <ul>
+                                                <li>在客户端页面增加伪随机数。
+                                                </li>
+                                                <li>通过验证码的方法</li>
+                                            </ul>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end -->
+                    </div>
+                </div>
+            </div>
+            <!-- panel start -->
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading13">
+                    <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse13" aria-expanded="false" aria-controls="collapse13">
+          试题十三：Web Worker 和webSocket
+        </a>
+      </h4>
+                </div>
+                <div id="collapse13" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading13">
+                    <div class="panel-body">
+                        <strong>worker主线程:</strong>
+                        <ul>
+                            <li>
+                                通过 worker = new Worker( url ) 加载一个JS文件来创建一个worker，同时返回一个worker实例。
+                            </li>
+                            <li>
+                                通过worker.postMessage( data ) 方法来向worker发送数据。
+                            </li>
+                            <li>
+                                绑定worker.onmessage方法来接收worker发送过来的数据。
+                            </li>
+                            <li>
+                                可以使用 worker.terminate() 来终止一个worker的执行。</li>
+                        </ul>
+                        <p>
+                            WebSocket是Web应用程序的传输协议，它提供了双向的，按序到达的数据流。他是一个HTML5协议，WebSocket的连接是持久的，他通过在客户端和服务器之间保持双工连接，服务器的更新可以被及时推送给客户端，而不需要客户端以一定时间间隔去轮询。</p>
+                    </div>
+                </div>
+            </div>
+            <!-- panel start -->
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading14">
+                    <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse14" aria-expanded="false" aria-controls="collapse14">
+          试题十四：Javascript垃圾回收方法
+        </a>
+      </h4>
+                </div>
+                <div id="collapse14" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading14">
+                    <div class="panel-body">
+                        <p>
+                            <strong>标记清除（mark and sweep）</strong>
+                            <br/> 这是JavaScript最常见的垃圾回收方式，当变量进入执行环境的时候，比如函数中声明一个变量，垃圾回收器将其标记为“进入环境”，当变量离开环境的时候（函数执行结束）将其标记为“离开环境”。 垃圾回收器会在运行的时候给存储在内存中的所有变量加上标记，然后去掉环境中的变量以及被环境中变量所引用的变量（闭包），在这些完成之后仍存在标记的就是要删除的变量了
+                        </p>
+                        <p>
+                            <strong>引用计数(reference counting)</strong> 在低版本IE中经常会出现内存泄露，很多时候就是因为其采用引用计数方式进行垃圾回收。引用计数的策略是跟踪记录每个值被使用的次数，当声明了一个 变量并将一个引用类型赋值给该变量的时候这个值的引用次数就加1，如果该变量的值变成了另外一个，则这个值得引用次数减1，当这个值的引用次数变为0的时 候，说明没有变量在使用，这个值没法被访问了，因此可以将其占用的空间回收，这样垃圾回收器会在运行的时候清理掉引用次数为0的值占用的空间。</p>
+                        <p>
+                            在IE中虽然JavaScript对象通过标记清除的方式进行垃圾回收，但BOM与DOM对象却是通过引用计数回收垃圾的， 也就是说只要涉及BOM及DOM就会出现循环引用问题。</p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- panel start -->
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading15">
+                    <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse15" aria-expanded="false" aria-controls="collapse15">
+          试题十五：性能优化问题
+        </a>
+      </h4>
+                </div>
+                <div id="collapse15" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading15">
+                    <div class="panel-body">
+                        <p><strong>代码层面：</strong>避免使用css表达式，避免使用高级选择器，通配选择器。
+                            <strong>缓存利用：</strong>缓存Ajax，使用CDN，使用外部js和css文件以便缓存，添加Expires头，服务端配置Etag，减少DNS查找等
+                            <strong>请求数量：</strong>合并样式和脚本，使用css图片精灵，初始首屏之外的图片资源按需加载，静态资源延迟加载。
+                            <strong>请求带宽：</strong>压缩文件，开启GZIP</p>
+                        <p>
+                            <dl>
+                                <dt>
+                                    代码层面的优化</dt>
+                                <dd>用hash-table来优化查找</dd>
+                                <dd>少用全局变量</dd>
+                                <dd>用innerHTML代替DOM操作，减少DOM操作次数，优化javascript性能</dd>
+                                <dd>用setTimeout来避免页面失去响应</dd>
+                                <dd>缓存DOM节点查找的结果</dd>
+                                <dd>避免使用CSS Expression</dd>
+                                <dd>避免全局查询</dd>
+                                <dd>避免使用with(with会创建自己的作用域，会增加作用域链长度)</dd>
+                                <dd>多个变量声明合并</dd>
+                                <dd>避免图片和iFrame等的空Src。空Src会重新加载当前页面，影响速度和效率</dd>
+                                <dd>尽量避免写在HTML标签中写Style属性</dd>
+                            </dl>
+                        </p>
+                        <p>
+                            <dl>
+                                <dt>移动端性能优化 尽量使用css3动画，开启硬件加速。</dt>
+                                <dd>适当使用touch事件代替click事件。</dd>
+                                <dd>避免使用css3渐变阴影效果。</dd>
+                                <dd>可以用transform: translateZ(0)来开启硬件加速。</dd>
+                                <dd>不滥用Float。</dd>
+                                <dd>Float在渲染时计算量比较大，尽量减少使用</dd>
+                                <dd>不滥用Web字体。</dd>
+                                <dd>Web字体需要下载，解析，重绘当前页面，尽量减少使用。</dd>
+                                <dd>合理使用requestAnimationFrame动画代替setTimeout </dd>
+                                <dd>CSS中的属性（CSS3 transitions、CSS3 3D transforms、Opacity、Canvas、WebGL、Video）会触发GPU渲染，请合理使用。过渡使用会引发手机过耗电增加</dd>
+                                <dd>PC端的在移动端同样适用</dd>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="./css/prettify.css">
+    <script src="./js/prettify.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+    	$(".panel-collapse").on('shown.bs.collapse',function(){
+    		$(this).scrollTop(100);
+    	})
+    </script>
+</body>
+
+</html>
